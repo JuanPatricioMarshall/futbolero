@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button, Modal, Form, Card } from "react-bootstrap";
 import CrearPartidoModal from "../components/CrearPartidoModal";
-import { get } from "mongoose";
 
 
 function PartidosList() {
