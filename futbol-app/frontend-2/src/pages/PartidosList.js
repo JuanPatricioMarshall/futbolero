@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button, Modal, Form, Card } from "react-bootstrap";
 import CrearPartidoModal from "../components/CrearPartidoModal";
+import { get } from "mongoose";
 
-
-const API_URL = "http://localhost:5000/api/partidos/proximos";
 
 function PartidosList() {
   const [partidos, setPartidos] = useState([]);
@@ -29,7 +28,7 @@ function PartidosList() {
 
     if (!nombreJugador.trim() || !partidoSeleccionado) return; // Evitar nombres vacíos
     console.log(nombreJugador)
-    fetch(`http://localhost:5000/api/partidos/${partidoSeleccionado._id}/jugadores`, {
+    fetch(`${process.env.REACT_APP_API_URL}/partidos/${partidoSeleccionado._id}/jugadores`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ jugador: nombreJugador })
@@ -46,7 +45,7 @@ function PartidosList() {
 
   useEffect(() => {
     axios
-      .get(API_URL)
+      .get(`${process.env.REACT_APP_API_URL}/partidos/proximos`)
       .then((response) => {
         setPartidos(response.data); // Guardar los partidos en el estado
         setLoading(false);

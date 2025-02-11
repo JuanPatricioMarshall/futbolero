@@ -10,8 +10,7 @@ const Partido = () => {
     const [nombreJugador, setNombreJugador] = useState("");
 
     useEffect(() => {
-        // Simulación de fetch desde el backend
-        fetch(`http://localhost:5000/api/partidos/${id}`)
+        fetch(`${process.env.REACT_APP_API_URL}/partidos/${id}`)
             .then((res) => res.json())
             .then((data) => setPartido(data))
             .catch((err) => console.error("Error cargando partido:", err));
@@ -19,8 +18,7 @@ const Partido = () => {
 
     const handleConfirmar = () => {
         if (!nombreJugador.trim()) return; // Evitar nombres vacíos
-
-        fetch(`http://localhost:5000/api/partidos/${id}/jugadores`, {
+        fetch(`${process.env.REACT_APP_API_URL}/partidos/${id}/jugadores`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ jugador: nombreJugador })
