@@ -23,12 +23,12 @@ const Jugadores = () => {
             });
     }, []);
 
-    if (loading) return <div className="text-center">Cargando partidos...</div>;
+    if (loading) return <div className="text-center">Cargando jugadores...</div>;
     if (error) return <div className="text-danger text-center">{error}</div>;
 
     return (
         <div className="container mt-4">
-            <h2 className="text-center">Jugadores Destacados</h2>
+            <h2 className="text-center">Toxo jugadores</h2>
             <JugadoresCarrusel jugadores={jugadores} />
         </div>
     );
