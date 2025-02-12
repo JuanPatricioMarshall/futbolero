@@ -3,33 +3,7 @@ const router = express.Router();
 const Partido = require("../models/Partido");
 
 // Simulación de base de datos
-const partidos = [
-    {
-        id: 1,
-        fecha: "2025-02-16T20:00:00",
-        tipo: "Futbol_5",
-        lugar: "Marangoni",
-        confirmados: 8,
-        totalJugadores: 10,
-        estado: "Reservado",
-        imagen: "assets/images/marangoni_cancha_1.jpg",
-        confirmados: ["Juampa", "Kiman"]
-    },
-    {
-        id: 2,
-        fecha: "2025-02-17T18:30:00",
-        tipo: "Fútbol 7",
-        lugar: "Cancha 2",
-        confirmados: [
-            {
-                nombre: "Kiman"
-            }
-        ],
-        totalJugadores: 1,
-        estado: "Disponible",
-        imagen: "/assets/images/golazo_cancha_1.jpg",
-    },
-];
+
 
 router.get("/proximos", async (req, res) => {
     try {
@@ -99,23 +73,7 @@ router.delete("/:id", async (req, res) => {
     }
   });
 
-// // Endpoint para obtener los próximos partidos
-// router.get("/proximos", (req, res) => {
-//     const ahora = new Date(); // Fecha actual
-//     const partidosFuturos = partidos
-//         .filter((p) => new Date(p.fecha) > ahora) // Solo partidos en el futuro
-//         .sort((a, b) => new Date(a.fecha) - new Date(b.fecha)); // Ordenados por fecha
 
-//     res.json(partidosFuturos);
-// });
-
-router.get("/1", (req, res) => {
-    res.json(partidos[0])
-})
-
-router.post("/1/jugadores", (req, res) => {
-    console.log(req.body.jugador)
-    return res.json(partidos[0])
-})
+  
 
 module.exports = router;

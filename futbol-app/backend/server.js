@@ -18,6 +18,11 @@ mongoose.connect(process.env.MONGO_URI, {
 
 const partidosRoutes = require("./routes/partidos");
 app.use("/api/partidos", partidosRoutes); // Prefijo para las rutas de partidos
+
+const jugadoresRoutes = require("./routes/jugadores");
+app.use("/api/jugadores", jugadoresRoutes); // Montar la ruta
+
+
 app.get("/", (req, res) => {
   res.send("Servidor funcionando 🚀");
 });

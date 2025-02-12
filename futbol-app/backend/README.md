@@ -37,3 +37,24 @@ curl -X POST http://localhost:5000/api/partidos/67aabe2bc76a99ce5837be75/jugador
      -d '{
         "jugador": "Pacopepe"
      }'
+
+
+curl -X POST http://localhost:5000/api/jugadores \
+     -H "Content-Type: application/json" \
+     -d '{
+          "nombre": "Nacho",
+          "apodo": "Toqueton",
+          "apellido": "Kiman",
+          "edad": 31,
+          "stat_general": 44,
+          "stat_ataque": 60,
+          "stat_defensa": 60,
+          "stat_velocidad": 35,
+          "stat_stamina": 40,
+          "stat_potencia": 88,
+          "stat_pase": 53,
+          "victorias": 2,
+          "empates": 10,
+          "derrotas": 50,
+          "foto": "/assets/images/kiman_jugador.jpg"
+        }'
