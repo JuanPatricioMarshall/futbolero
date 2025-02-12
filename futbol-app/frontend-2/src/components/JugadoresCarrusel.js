@@ -65,7 +65,10 @@ const JugadorCard = ({ jugador }) => {
                     <div className="lupa-icono" onClick={handleVerMasInfo}>
                         <FaSearch />
                     </div>
-                    <img src={jugador.foto} alt={jugador.nombre} className="jugador-foto" />
+                    <img 
+                        src={`${process.env.PUBLIC_URL}/${jugador.foto}`}
+                        // src={jugador.foto}
+                         alt={jugador.nombre} className="jugador-foto" />
                     <h3 className="jugador-nombre">{jugador.nombre}</h3>
                     <div className="estrellas">{renderStars(jugador.stat_general)}</div>
                 </div>

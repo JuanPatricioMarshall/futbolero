@@ -88,7 +88,8 @@ function PartidosList() {
                 <div className="card shadow-lg">
                   <div className="position-relative">
                     <img
-                      src={partido.imagen}
+                    src={`${process.env.PUBLIC_URL}/${partido.imagen}`}
+                      // src={partido.imagen}
                       className="card-img-top"
                       alt="Cancha de fútbol"
                       style={{ height: "200px", objectFit: "cover" }}

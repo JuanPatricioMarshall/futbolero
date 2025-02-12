@@ -41,7 +41,8 @@ const Partido = () => {
             <Card className="shadow-lg">
                 <Card.Img
                     variant="top"
-                    src={`/${partido.imagen}`} // Agregar la barra inicial "/"
+                    src={`${process.env.PUBLIC_URL}/${partido.imagen}`}
+                    // src={`/${partido.imagen}`} // Agregar la barra inicial "/"
                     //   src={partido.imagen}
                     alt="Cancha de fútbol"
                     style={{ height: "300px", objectFit: "cover" }}

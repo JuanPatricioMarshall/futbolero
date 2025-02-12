@@ -98,7 +98,10 @@ const Jugador = () => {
             {/* Columna 1: Info del jugador */}
             <div className="jugador-info">
                 <button className="boton-volver" onClick={() => navigate(-1)}>← Volver Atrás</button>
-                <img src={jugador.foto} alt={jugador.nombre} className="jugador-foto" />
+                <img 
+                    // src={jugador.foto} 
+                    src={`${process.env.PUBLIC_URL}/${jugador.foto}`}
+                    alt={jugador.nombre} className="jugador-foto" />
                 <h2>{jugador.nombre}</h2>
                 <p>Edad: {jugador.edad}</p>
 
