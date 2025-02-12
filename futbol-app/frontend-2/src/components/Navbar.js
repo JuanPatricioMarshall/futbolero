@@ -14,7 +14,7 @@ function Navbar() {
               <Link className="nav-link text-white" to="/">Inicio</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-white" to="/matches">Partidos</Link>
+              <Link className="nav-link text-white" to="/partidos">Partidos</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link text-white" to="/login">Iniciar Sesión</Link>
