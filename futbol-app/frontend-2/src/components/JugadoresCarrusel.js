@@ -26,12 +26,24 @@ const responsive = {
     },
 };
 
+const mapearStat = (valor) => Math.round((valor / 99) * 5); // Redondeo entero
+
 const renderStars = (rating) => {
-    const totalStars = 5;
-    return Array.from({ length: totalStars }, (_, index) =>
-        index < rating ? <FaStar key={index} color="gold" /> : <FaRegStar key={index} color="gray" />
+    const totalStars = 5; // Siempre mostrar 5 estrellas
+    const mappedRating = Math.round(mapearStat(rating)); // Asegurar redondeo
+    return (
+        <>
+            {Array.from({ length: totalStars }, (_, index) =>
+                index < mappedRating ? (
+                    <FaStar key={index} color="gold" />
+                ) : (
+                    <FaRegStar key={index} color="gray" />
+                )
+            )}
+        </>
     );
 };
+
 
 
 const JugadorCard = ({ jugador }) => {
@@ -40,7 +52,7 @@ const JugadorCard = ({ jugador }) => {
 
     const handleVerMasInfo = (e) => {
         e.stopPropagation(); // 👈 Evita que se voltee la carta al hacer clic en la lupa
-        navigate(`/jugador/${jugador.id}`);
+        navigate(`/jugador/${jugador._id}`);
     };
 
     return (
@@ -55,7 +67,7 @@ const JugadorCard = ({ jugador }) => {
                     </div>
                     <img src={jugador.foto} alt={jugador.nombre} className="jugador-foto" />
                     <h3 className="jugador-nombre">{jugador.nombre}</h3>
-                    <div className="estrellas">{renderStars(jugador.general)}</div>
+                    <div className="estrellas">{renderStars(jugador.stat_general)}</div>
                 </div>
             ) : (
 
@@ -65,22 +77,16 @@ const JugadorCard = ({ jugador }) => {
 
                     <div className="jugador-stats">
                         {[
-                            { nombre: "Ataque", valor: jugador.stats.ataque },
-                            { nombre: "Defensa", valor: jugador.stats.defensa },
-                            { nombre: "Velocidad", valor: jugador.stats.velocidad },
-                            { nombre: "Potencia", valor: jugador.stats.potencia },
-                            { nombre: "Estamina", valor: jugador.stats.estamina },
-                            { nombre: "Pases", valor: jugador.stats.pases }
+                            { nombre: "Ataque", valor: jugador.stat_ataque },
+                            { nombre: "Defensa", valor: jugador.stat_defensa },
+                            { nombre: "Velocidad", valor: jugador.stat_velocidad },
+                            { nombre: "Potencia", valor: jugador.stat_potencia },
+                            { nombre: "Estamina", valor: jugador.stat_stamina },
+                            { nombre: "Pases", valor: jugador.stat_pases }
                         ].map((stat) => (
                             <div key={stat.nombre} className="jugador-stat">
                                 <span className="stat-nombre">{stat.nombre}</span>
-                                <div className="stat-estrellas">
-                                    {Array.from({ length: 5 }).map((_, i) => (
-                                        <span key={i} style={{ color: "#FFD700", fontSize: "1.2rem" }}>
-                                            {i < Math.floor(stat.valor) ? "★" : "☆"}
-                                        </span>
-                                    ))}
-                                </div>
+                                <div className="stat-estrellas">{renderStars(stat.valor)}</div>
                             </div>
                         ))}
                     </div>
@@ -94,7 +100,6 @@ const JugadorCard = ({ jugador }) => {
 const JugadoresCarrusel = ({ jugadores }) => {
     return (
         <div className="carrusel-container">
-            <h2>Jugadores</h2>
             <Carousel containerClass="custom-carousel" responsive={responsive} infinite={true} autoPlay={true} autoPlaySpeed={3000}>
                 {jugadores.map((jugador, index) => (
                     <JugadorCard key={index} jugador={jugador} />

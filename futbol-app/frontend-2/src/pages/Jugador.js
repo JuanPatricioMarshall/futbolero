@@ -13,22 +13,22 @@ const Jugador = () => {
     const [jugador, setJugador] = useState(null); // Ahora inicia en null para evitar errores de acceso
 
     useEffect(() => {
-        // Simulación de fetch, luego reemplazar con un API call real
-        const jugadorMock = {
-            id: 1,
-            nombre: "KIMAN",
-            edad: 36,
-            foto: "/assets/images/kiman_jugador.jpg",
-            general: 3,
-            stats: { ataque: 5, defensa: 3, velocidad: 5, potencia: 4, estamina: 4, pases: 5 },
-            historial: { W: 13, D: 2, L: 24 }
+        const fetchJugador = async () => {
+            try {
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/jugadores/${id}`);
+                if (!response.ok) {
+                    throw new Error("Error al obtener el jugador");
+                }
+                const data = await response.json();
+                setJugador(data);
+            } catch (error) {
+                console.error("Error:", error);
+            }
         };
 
-        // Simulación de delay como si fuera un fetch
-        setTimeout(() => {
-            setJugador(jugadorMock);
-        }, 500);
+        fetchJugador();
     }, [id]);
+
 
     // Muestra un mensaje de carga hasta que el jugador tenga datos
     if (!jugador) {
@@ -41,7 +41,14 @@ const Jugador = () => {
         datasets: [
             {
                 label: "Stats",
-                data: Object.values(jugador.stats),
+                data: [
+                    jugador.stat_ataque || 0,
+                    jugador.stat_defensa || 0,
+                    jugador.stat_velocidad || 0,
+                    jugador.stat_potencia || 0,
+                    jugador.stat_stamina || 0,
+                    jugador.stat_pase || 0
+                ],
                 backgroundColor: "rgba(0, 123, 255, 0.2)",
                 borderColor: "#007BFF",
                 borderWidth: 2,
@@ -58,7 +65,7 @@ const Jugador = () => {
         scales: {
             r: {
                 min: 0,
-                max: 5,
+                max: 99,
                 ticks: {
                     display: false // Oculta los números de escala
                 },
@@ -75,16 +82,16 @@ const Jugador = () => {
     };
 
     // Calcular porcentajes del historial
-    const calcularPorcentajes = (historial) => {
-        const total = historial.W + historial.D + historial.L;
+    const calcularPorcentajes = (jugador) => {
+        const total = jugador.victorias + jugador.derrotas + jugador.empates;
         return {
-            win: (historial.W / total) * 100,
-            draw: (historial.D / total) * 100,
-            loss: (historial.L / total) * 100,
+            win: (jugador.victorias / total) * 100,
+            draw: (jugador.empates / total) * 100,
+            loss: (jugador.derrotas / total) * 100,
         };
     };
 
-    const { win, draw, loss } = calcularPorcentajes(jugador.historial);
+    const { win, draw, loss } = calcularPorcentajes(jugador);
 
     return (
         <div className="jugador-detalles">
@@ -96,15 +103,23 @@ const Jugador = () => {
                 <p>Edad: {jugador.edad}</p>
 
                 <div className="jugador-stats">
-                    {Object.entries(jugador.stats).map(([key, value]) => (
+                    {[
+                        { key: "stat_ataque", label: "Ataque", value: jugador.stat_ataque || 0 },
+                        { key: "stat_defensa", label: "Defensa", value: jugador.stat_defensa || 0 },
+                        { key: "stat_velocidad", label: "Velocidad", value: jugador.stat_velocidad || 0 },
+                        { key: "stat_potencia", label: "Potencia", value: jugador.stat_potencia || 0 },
+                        { key: "stat_stamina", label: "Estamina", value: jugador.stat_stamina || 0 },
+                        { key: "stat_pase", label: "Pases", value: jugador.stat_pase || 0 }
+                    ].map(({ key, label, value }) => (
                         <div key={key} className="stat-row">
-                            <span className="stat-label">{key.charAt(0).toUpperCase() + key.slice(1)}</span>
+                            <span className="stat-label">{label}</span>
                             <div className="stat-bar-container">
-                                <div className="stat-bar" style={{ width: `${(value / 5) * 100}%` }}></div>
+                                <div className="stat-bar" style={{ width: `${(value / 99) * 100}%` }}></div>
                             </div>
                         </div>
                     ))}
                 </div>
+
             </div>
 
             {/* Columna 2: Gráfico y Historial */}
@@ -119,7 +134,7 @@ const Jugador = () => {
                         <div className="empates" style={{ width: `${draw}%` }}></div>
                         <div className="derrotas" style={{ width: `${loss}%` }}></div>
                     </div>
-                    <p className="historial-record">{jugador.historial.W}W - {jugador.historial.D}D - {jugador.historial.L}L</p>
+                    <p className="historial-record">{jugador.victorias}W - {jugador.empates}D - {jugador.derrotas}L</p>
                     <p className="historial-winrate">Win Rate: {win.toFixed(1)}%</p>
                 </div>
             </div>
