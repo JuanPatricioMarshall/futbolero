@@ -1,0 +1,190 @@
+/* JugadorCard.css */
+.jugador-card {
+  position: relative; /* Necesario para posicionar la lupa sin afectar la imagen */
+  width: 300px;
+  height: 400px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  background-color: white;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+
+.jugador-card:hover {
+  transform: scale(1.05);
+}
+
+.jugador-foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit; /* Hereda el border-radius de .jugador-card */
+  display: block;
+  margin-top: 30px; /* Ajusta este valor según sea necesario */
+
+}
+
+
+.estrellas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  /* Espacio entre estrellas */
+}
+
+.jugador-nombre {
+  text-align: center;
+  /* Centra el texto */
+  font-size: 1.5rem;
+  /* Ajusta el tamaño de la fuente */
+  font-weight: bold;
+  /* Lo hace más vistoso */
+  color: #333;
+  /* Un color oscuro pero suave */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  /* Efecto de sombra */
+  margin: 10px 0;
+  /* Espaciado arriba y abajo */
+}
+
+
+.jugador-carta-back {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.jugador-info {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.jugador-stats {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.jugador-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: #f8f8f8;
+}
+
+.stat-nombre {
+  font-weight: bold;
+}
+
+.stat-estrellas {
+  display: flex;
+  gap: 3px;
+}
+
+
+
+
+.carrusel-container {
+  width: 100%; /* Extiende el ancho para que las flechas no se corten */
+  max-width: 90vw; /* Opcional, controla el ancho máximo */
+  margin: auto;
+  position: relative; /* Necesario para que las flechas se posicionen bien */
+  overflow: visible !important; /* Evita que las flechas se oculten */
+  padding-bottom: 30px;
+}
+
+.custom-carousel {
+  overflow: visible !important;
+}
+
+.slick-slider,
+.slick-list,
+.slick-track {
+  overflow: visible !important;
+}
+.carrusel {
+  overflow: visible !important; /* Asegura que no se recorten las cartas */
+}
+
+.react-multiple-carousel__arrow {
+  position: absolute !important;
+  z-index: 1000 !important; /* Asegura que estén encima */
+  width: 50px !important; 
+  height: 50px !important;
+  background-color: rgba(0, 0, 0, 0.5) !important; /* Color oscuro */
+  border-radius: 50% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.react-multiple-carousel__arrow--left {
+  left: -70px !important; /* Mueve el botón izquierdo más afuera */
+}
+
+.react-multiple-carousel__arrow--right {
+  right: -70px !important; /* Mueve el botón derecho más afuera */
+}
+
+.ver-mas-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  display: block;
+  width: 80%;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.ver-mas-btn:hover {
+  background-color: #0056b3;
+}
+
+.lupa-icono {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.6); /* Fondo oscuro semi-transparente */
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  border: 2px solid white; /* Bordes blancos para mayor visibilidad */
+}
+
+.lupa-icono:hover {
+  background: rgba(0, 200, 0, 1); /* Verde brillante al pasar el mouse */
+  transform: scale(1.1);
+}

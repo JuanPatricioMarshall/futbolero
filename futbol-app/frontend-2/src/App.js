@@ -4,6 +4,8 @@ import PartidosList from "./pages/PartidosList";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import Partido from "./pages/Partido";
+import Jugadores from "./pages/Jugadores";
+import Jugador from "./pages/Jugador";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path="/partidos" element={<PartidosList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/partidos/:id" element={<Partido />} />
+          <Route path="/jugadores" element={<Jugadores />} />
+          <Route path="/jugador/:id" element={<Jugador />} />
         </Routes>
     </Router>
   );
