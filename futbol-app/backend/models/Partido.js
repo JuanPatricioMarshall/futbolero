@@ -7,7 +7,7 @@ const PartidoSchema = new mongoose.Schema({
   confirmados: [{ type: String }], // Lista de jugadores confirmados
   tipo: { type: String, enum: ["Futbol_5", "Futbol_7"], required: true }, // Tipo de partido
   totalJugadores: { type: Number, required: true }, // Ej: 10 o 14
-  estado: { type: String, enum: ["Disponible", "Reservado", "ParaReservar"], default: "Disponible" },
+  estado: { type: String, enum: ["Disponible", "Reservado", "ParaReservar", "Abierto"], default: "Disponible" },
   lugar: { type: String, required: true }, // Dirección de la cancha
   imagen: { type: String, required: true } // URL de la imagen
 }, { timestamps: true });
