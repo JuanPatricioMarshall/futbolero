@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col, Card, Table, Badge, Button } from "react-bootstrap";
 import ModalAgregarJugador from "../components/ModalAgregarJugador";
 import JSConfetti from "js-confetti";
@@ -44,36 +44,20 @@ const Partido = () => {
         cargarDatos();
     }, [id]);
 
-    // const handleBajarJugador = async (jugadorId) => {
-    //     try {
-    //         await fetch(`${process.env.REACT_APP_API_URL}/partidos/${id}/jugadores/${jugadorId}`, {
-    //             method: "DELETE",
-    //             headers: { "Content-Type": "application/json" },
-    //         });
-
-    //         // Actualizar la lista de jugadores confirmados eliminando el jugador
-    //         setPartido((prev) => ({
-    //             ...prev,
-    //             confirmados: prev.confirmados.filter((j) => j._id !== jugadorId),
-    //         }));
-    //     } catch (err) {
-    //         console.error("Error al bajar jugador:", err);
-    //     }
-    // };
 
     const handleBajarJugador = (jugadorId) => {
         fetch(`${process.env.REACT_APP_API_URL}/partidos/${id}/jugadores/${jugadorId}`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
         })
-        .then((res) => {
-            if (res.ok) {
-                window.location.reload(); // 🔄 Recargar la página después de la eliminación
-            } else {
-                console.error("Error al bajar al jugador");
-            }
-        })
-        .catch((err) => console.error("Error en la solicitud:", err));
+            .then((res) => {
+                if (res.ok) {
+                    window.location.reload(); // 🔄 Recargar la página después de la eliminación
+                } else {
+                    console.error("Error al bajar al jugador");
+                }
+            })
+            .catch((err) => console.error("Error en la solicitud:", err));
     };
 
     const handleConfirmar = (jugadoresSeleccionados) => {
@@ -207,18 +191,20 @@ const Partido = () => {
                                         <tr key={jugador._id} className="text-center">
                                             <td>{index + 1}</td>
                                             <td>
-                                                <img
-                                                    src={jugador.foto}
-                                                    alt={jugador.nombre}
-                                                    style={{ width: "40px", height: "40px", borderRadius: "50%", marginRight: "10px" }}
-                                                />
-                                                {jugador.nombre}
+                                                <Link to={`/jugador/${jugador._id}`}>
+                                                    <img
+                                                        src={jugador.foto}
+                                                        alt={jugador.nombre}
+                                                        style={{ width: "40px", height: "40px", borderRadius: "50%", marginRight: "10px" }}
+                                                        />
+                                                     {jugador.nombre}
+                                                </Link>
                                             </td>
                                             <td>
                                                 <Badge bg="success">Confirmado ✅</Badge>
                                             </td>
                                             <td>
-                                            <Badge bg="danger"  onClick={() => handleBajarJugador(jugador._id)}>BAJARLO ❌</Badge>
+                                                <Badge bg="danger" onClick={() => handleBajarJugador(jugador._id)}>BAJARLO ❌</Badge>
                                                 {/* <button
                                                     onClick={() => handleBajarJugador(jugador._id)}
                                                     className="badge-bajar"

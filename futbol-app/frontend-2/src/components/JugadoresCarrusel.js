@@ -66,7 +66,7 @@ const JugadorCard = ({ jugador }) => {
                         <FaSearch />
                     </div>
                     <img 
-                        src={`${process.env.PUBLIC_URL}/${jugador.foto}`}
+                        src={`${process.env.PUBLIC_URL}${jugador.foto}`}
                         // src={jugador.foto}
                          alt={jugador.nombre} className="jugador-foto" />
                     <h3 className="jugador-nombre">{jugador.nombre}</h3>

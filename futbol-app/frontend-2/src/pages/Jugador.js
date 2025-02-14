@@ -100,7 +100,7 @@ const Jugador = () => {
                 <button className="boton-volver" onClick={() => navigate(-1)}>← Volver Atrás</button>
                 <img 
                     // src={jugador.foto} 
-                    src={`${process.env.PUBLIC_URL}/${jugador.foto}`}
+                    src={`${process.env.PUBLIC_URL}${jugador.foto}`}
                     alt={jugador.nombre} className="jugador-foto" />
                 <h2>{jugador.nombre}</h2>
                 <p>Edad: {jugador.edad}</p>
@@ -127,7 +127,7 @@ const Jugador = () => {
 
             {/* Columna 2: Gráfico y Historial */}
             <div className="jugador-analisis">
-                <div className="hexagono">
+                <div className="hexagono-detalle">
                     <Radar data={dataRadar} options={optionsRadar} />
                 </div>
                 <div className="historial-container">

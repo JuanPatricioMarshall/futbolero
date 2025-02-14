@@ -21,15 +21,18 @@
   transform: scale(1.05);
 }
 
+
 .jugador-foto {
   width: 100%;
-  height: 100%;
+  height: auto; /* Mantiene la proporción de la imagen */
+  max-height: 300px; /* Ajusta este valor según el tamaño deseado */
+  max-width: 250px; /* Ajusta este valor según el tamaño deseado */
   object-fit: cover;
-  border-radius: inherit; /* Hereda el border-radius de .jugador-card */
+  border-radius: inherit;
   display: block;
-  margin-top: 30px; /* Ajusta este valor según sea necesario */
-
+  margin-top: 15px; /* Reduce el margen si es necesario */
 }
+
 
 
 .estrellas {
