@@ -1,0 +1,189 @@
+.drag-drop-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.jugadores-lista {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: #f8f9fa;
+    min-height: 120px;
+}
+
+.jugador-card {
+    width: 80px;
+    text-align: center;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 6px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+    user-select: none;
+}
+
+.jugador-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+.zona-seleccion {
+    min-height: 120px;
+    padding: 15px;
+    border: 2px dashed #aaa;
+    border-radius: 8px;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.zona-seleccion h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.zona-seleccion.resaltado {
+    background: rgba(76, 175, 80, 0.2);
+}
+
+.seleccionados-lista {
+    display: flex;
+    gap: 10px;
+}
+
+/* Animación de lluvia triste */
+.sad-rain {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 50px;
+    animation: rainAnimation 3s ease-out forwards;
+    z-index: 1000;
+}
+
+@keyframes rainAnimation {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -10px);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, 100px);
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;  /* 👈 Evita que se muestre por defecto */
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal.visible {
+    display: flex !important;  /* 👈 Forzar visibilidad cuando isOpen es true */
+    opacity: 1;
+}
+
+.modal.oculto {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-contenido {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.oculto {
+    display: none !important;
+}
+
+.visible {
+    display: flex !important;
+}
+
+
+/* Contenedor de botones */
+.boton-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Botón Confirmar */
+.boton-confirmar {
+    display: block;
+    width: 80%; /* Más ancho para que se vea más sólido */
+    max-width: 300px;
+    margin: 20px auto; /* Centrado */
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px; /* Menos curvado */
+    cursor: pointer;
+    transition: background 0.2s ease-in-out, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.boton-confirmar:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.boton-confirmar i {
+    font-size: 20px;
+}
+
+
+
+
+
+/* Contenedor del título y botón de cerrar */
+.modal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espacio entre la flecha y el título */
+    padding: 15px 20px; /* Espacio alrededor */
+    position: relative;
+    justify-content: space-between; /* Separa el título y la X */
+
+}
+
+.boton-volver {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: none;
+    border: none;
+    color: #555; /* Gris oscuro para mejor visibilidad */
+    font-size: 28px; /* Tamaño más grande */
+    cursor: pointer;
+    transition: color 0.2s, transform 0.1s;
+}
+
+.boton-volver:hover {
+    color: #333; /* Más oscuro al pasar el mouse */
+    transform: scale(1.1);
+}

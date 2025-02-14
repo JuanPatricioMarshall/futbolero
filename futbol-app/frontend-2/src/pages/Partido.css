@@ -1,0 +1,20 @@
+.badge-bajar {
+    background-color: rgb(160, 22, 22) !important;
+    color: white !important;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.badge-bajar:hover {
+    background-color: red !important;
+    color: white !important;
+    font-weight: bold;
+    content: " BAJARLO ❌";  /* Esto NO funciona en badges */
+}
+
+.badge-bajar.hovered::after {
+    content: " BAJARLO ❌";
+}
